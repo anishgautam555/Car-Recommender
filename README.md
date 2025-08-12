@@ -2,6 +2,7 @@
 
 - Python 3.13.3 installed on computer
 - Pip (if not already installed with Python)
+- DeepSeek-R1 API Key from OpenRouter
 
 # Instructions to run server:
 
@@ -48,3 +49,9 @@
 
 5. To open the server, either copy and paste the link on the line that says “Starting
     development server”, or CTRL + left click on the link. The website will open in your browser.
+
+# Instructions to run server:
+
+1. Open views.py.
+2. Scroll down to the very bottom, you should see a function called "ask_deepseek".
+3. Within this function, there will be a blank variable called "api_key". Paste your DeepSeek OpenRouter API key here.
