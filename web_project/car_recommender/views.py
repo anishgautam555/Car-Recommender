@@ -236,7 +236,7 @@ def run_standard_model(data):
 
 def ask_deepseek(message):
     # API key for DeepSeek-R1 model, and the URL to access the API
-    api_key = "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"
+    api_key = "" # Insert your own key here
     api_url = "https://openrouter.ai/api/v1/chat/completions"
 
     # Add API key to header to use the API
@@ -256,3 +256,4 @@ def ask_deepseek(message):
 
     # Return the response
     return response.json()
+
