@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- Load the static files from the Django project and the tags to use Django Crispy Forms -->
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dynamic Car Recommender</title>
+    
+    <!-- Load the Bootstrap stylesheet -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Load the additional fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    /* Style for the landing screen */
+    #landing {
+        padding-top: 23%;
+        padding-bottom: 5%;
+        padding-left: 50px;
+        padding-right: 50px;
+        /* Note: the background image is free-to-use with no copyright attached or crediting required. */
+        background: url("{% static 'images/site_header.jpg' %}") no-repeat center center fixed; 
+        width: auto;
+        display: block;
+        width: 100%;
+        background-size: cover;
+    }
+
+    /* Style for the navigation bar to ensure it is gapless */
+    .navbar-nav {
+        margin-bottom: 0px !important;
+    }
+
+    /* Style for the information section below the landing screen */
+    #how-it-works {
+        padding-top: 20px;
+        padding-bottom: 100px;
+    }
+</style>
+
+<body>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block content %}
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <a href="/" class="navbar-brand" style="font-family: 'Audiowide', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><h3><b>DCR</b></h3></a>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="simple-recommender" style="font-family: Audiowide, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: inline-block;" class="nav-link">Simple</a>
+                <a href="standard-recommender" style="font-family: Audiowide, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: inline-block;" class="nav-link">Standard</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Landing screen -->
+    <div id="landing">
+        <div class="landing-text" style="font-family: 'Audiowide', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: white; text-shadow: 2px 2px 4px black;">
+            <h1>Dynamic Car Recommender</h1>
+            <h5>Get recommendations based on your needs</h5>
+            <br>
+            <a href="simple-recommender" class="btn btn-secondary" style="background-color: rgba(52, 58, 64, 0.5);">Simple Recommender</a>
+            <a href="standard-recommender" class="btn btn-secondary" style="background-color: rgba(52, 58, 64, 0.5);">Standard Recommender</a>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <h6 style="text-align: center;">Scroll down for more info</h6>
+        </div>
+    </div>
+
+    <!-- Information below the landing screen -->
+    <div class="container-fluid">
+        <div id="how-it-works" style="text-align: center;">
+            <br>
+            <h2>About this website</h2>
+            <br>
+            <p>This web-app is a recommender system based web-app that uses your information
+            and requirements to help you choose a car for your needs. <br><br> Simply fill in either of
+            the forms available, and the system will produce recommendations that aim to
+            suit your needs. <br><br> Each recommendation comes with AI assistance powered by DeepSeek-R1, 
+            available to give you more information about the recommendations given.
+            </p>
+            <br>
+            <br>
+            <h2>Which form should I use?</h2>
+            <br>
+            <p>The simple form is recommended for those who don't have much idea about what car they want, 
+                but have an idea of what they want to use it for and what they may want from it. <br><br>
+                The standard form is recommended for those who have an understanding of what they want in a car,
+                and may have more specific requirements. <br><br>
+
+            </p>
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+
+</html>

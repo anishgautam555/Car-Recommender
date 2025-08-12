@@ -1,0 +1,127 @@
+<html>
+
+<!-- Load the static files from the Django project and the tags to use Django Crispy Forms -->
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Simple Recommender</title>
+
+    <!-- Load the Bootstrap stylesheet and additional fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+    {% block javascript %}
+    <script>
+        // Shows the loading screen and hides old results when the form submit button is clicked
+        function showLoading() {
+
+            var x = document.getElementById("loading");
+            var y = document.getElementById("Simple-Results");
+
+            if (x.hidden == true) {
+                x.hidden = false;
+            }
+
+            if (y.hidden == false) {
+                y.hidden = true;
+            }
+        }
+
+    </script>
+    {% endblock javascript %}
+</head>
+
+<style>
+    /* Prevents a gap beneath the navigation bar */
+    .navbar-nav {
+        margin-bottom: 0px !important;
+    }
+
+    /* Style for the image at the top */
+    #landing {
+        position: relative;
+        text-align: center;
+    }
+
+    /* Style for the page title text */
+    .landing-text {
+        font-family: 'Audiowide', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        color: white; 
+        text-shadow: 2px 2px 4px black; 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+</style>
+
+<body>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    {% block content %}
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <a href="/" class="navbar-brand" style="font-family: 'Audiowide', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><h3><b>DCR</b></h3></a>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="simple-recommender" style="font-family: Audiowide, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: inline-block;" class="nav-link">Simple</a>
+                    <a href="standard-recommender" style="font-family: Audiowide, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: inline-block;" class="nav-link">Standard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Title image and text -->
+    <div id="landing">
+        <!-- Note: the background image is free-to-use with no copyright attached or crediting required. -->
+        <img src="{% static 'images/simple_header.jpg' %}" style="width: 100vw; z-index: 10;">
+        <div class="landing-text">
+            <h1>Simple Recommender</h1>
+        </div>
+    </div>
+
+    <!-- Container for the form and results -->
+    <div id="simple" class="container-fluid" style="padding-top: 25px; padding-bottom: 25px; padding-left: 20px">
+
+        <!-- Form -->
+        <form method="post" onsubmit="showLoading();" action="#results">{% csrf_token %}
+            {{simple_recommender }}
+            <div id="results"></div>
+            <br>
+            <button type="submit" name="run_simple_recommender">Get recommendations</button>
+        </form>
+
+        <!-- Loading message which shows on submit -->
+        <div id="loading" hidden>
+            <hr>
+            <h5>Loading recommendations...</h5>
+            <hr>
+        </div>
+
+        <!-- Results which show when the results have been collected from the back-end -->
+        <div id="Simple-Results" style="padding-bottom: 25px;">
+            {% if simple_results %}
+            <br>
+            <h2>Recommendations:</h2>
+            <h5>{{simple_results|linebreaks }}</h5>
+            <hr>
+                <h6>The following information about the recommendations was produced by DeepSeek AI. Please note that 
+                    this content may not be entirely error-free, and should be used for informational purposes only.</h6>
+                <br>
+                {{ds_response|safe }}
+            <hr>
+            {% else %}
+
+            {% endif %}
+        </div>
+        
+    </div>
+    {% endblock content %}
+</body>
+
+</html>
