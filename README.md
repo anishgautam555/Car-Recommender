@@ -50,7 +50,7 @@
 5. To open the server, either copy and paste the link on the line that says “Starting
     development server”, or CTRL + left click on the link. The website will open in your browser.
 
-# Instructions to run server:
+# Instructions to add API key:
 
 1. Open views.py.
 2. Scroll down to the very bottom, you should see a function called "ask_deepseek".
